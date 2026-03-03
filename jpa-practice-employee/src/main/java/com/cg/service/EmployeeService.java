@@ -1,0 +1,62 @@
+package com.cg.service;
+
+import java.time.LocalDate;
+import java.util.List;
+import java.util.Random;
+
+import com.cg.bean.Employee;
+import com.cg.dao.EmployeeDao;
+import com.cg.dao.IEmployeeDao;
+
+public class EmployeeService implements IEmployeeService {
+	IEmployeeDao dao = new EmployeeDao();
+
+	@Override
+	public String createEmployee(Employee emp) {
+		if (emp.getName() == null || emp.getName().length() < 4 || emp.getEmail() == null) {
+			return "Invalid Employee Data";
+		} else {
+			Random r = new Random();
+			String empid = emp.getName().substring(0, 3) + r.nextInt(1000);
+			emp.setEmpid(empid);
+			return dao.saveEmployee(emp);
+		}
+	}
+
+	@Override
+	public Employee findById(String eid) {
+		// TODO Auto-generated method stub
+		if (eid == null) {
+			System.out.println("Enter valid id");
+			return null;
+		}
+		return dao.findEmployee(eid);
+
+	}
+
+	@Override
+	public List<Employee> getAllEmployee() {
+		// TODO Auto-generated method stub
+		return dao.getAll();
+	}
+
+	@Override
+	public String updateEmployeeName(String eid, String name, String email , String dob) {
+		// TODO Auto-generated method stub
+		if (eid == null) {
+			return "Enter valid id or name";
+		}
+		Employee emp = new Employee(name, email, dob); 
+		return dao.updateEmployeeName(eid,emp);
+	}
+
+	@Override
+	public String removeEmployee(String empid) {
+		// TODO Auto-generated method stub
+		if(empid==null) {
+			return "Enter valid id";
+		}
+		return dao.deleteEmployee(empid);
+	}
+
+}
