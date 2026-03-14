@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"> <!-- bean definitions here -->
+
+
+<bean id="book" class="com.cg.bean.Book">
+<!--  
+<property name="bookId" value="100"></property>
+<property name="title" value="C++"></property>
+<property name="author" value="David"></property> -->
+
+<constructor-arg name="bookId" value="100" />
+<constructor-arg name="title" value="OOPS WITH JAVA" />
+<constructor-arg name="author" value="David paul" />
+
+</bean>
+
+<bean id="librarian" class="com.cg.bean.Librarian" >
+<property name="librarianId" value="10"></property>
+<property name="name" value="Akhilesh"></property>
+<property name="book" ref="book"></property>
+</bean>
+
+
+
+</beans>
