@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"> <!-- bean definitions here -->
+
+
+
+	<bean id="employee" class="com.cg.bean.Employee">
+		<property name="empId" value="100"></property>
+		<property name="name" value="amit"></property>
+		<property name="salary" value="200.00"></property>
+		<property name="businessUnit" ref="SBU"></property>
+		<property name="age" value="24"></property>
+	</bean>
+	<bean id="employee1" class="com.cg.bean.Employee">
+		<property name="empId" value="101"></property>
+		<property name="name" value="amrit"></property>
+		<property name="salary" value="20223.00"></property>
+		<property name="businessUnit" ref="SBU"></property>
+		<property name="age" value="34"></property>
+	</bean>
+
+	<bean id="SBU" class="com.cg.bean.SBU">
+		<property name="sbId" value="100"></property>
+		<property name="sbuName" value="FCX"></property>
+		<property name="sbuHead" value="Aman"></property>
+		<property name="empList">
+			<list>
+				<ref bean="employee" />
+				<ref bean="employee1" />
+			</list>
+		</property>
+
+	</bean>
+
+
+</beans>
